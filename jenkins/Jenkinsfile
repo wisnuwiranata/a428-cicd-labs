@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh 'npm config rm proxy'
                 sh 'npm config rm https-proxy --tried removing npm proxy'
-                sh 'sudo chown -R 118:124 "/.npm"'
+                sh 'chown -R 118:124 "/.npm"'
                 sh 'npm install'
             }
         }
