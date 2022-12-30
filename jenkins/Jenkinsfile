@@ -14,7 +14,7 @@ pipeline {
                 sh 'npm config rm proxy'
                 sh 'npm config rm https-proxy --tried removing npm proxy'
                 sh 'ls -lah'
-                //sh 'chown -R 118:124 "/.npm"'
+                sh 'chown -RX 118:124 ./'
                 sh 'npm install --loglevel=verbose'
             }
         }
