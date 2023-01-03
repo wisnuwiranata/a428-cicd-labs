@@ -14,7 +14,6 @@ pipeline {
             }
             steps {
                 sh 'npm install --force'
-                sh 'npm run build'
             }
         }
         stage('Test') {
@@ -43,7 +42,8 @@ pipeline {
                     sh "ssh ubuntu@${ip} &&\
                         rm -r /var/www/html &&\
                         mkdir -p /var/www/html &&\
-                        unzip deployment.zip -d /var/www/html/"
+                        unzip deployment.zip -d /var/www/html/ &&\
+                        bash /var/www/html/jenkins/scripts/deliver.sh"
                 }
             }
         }
