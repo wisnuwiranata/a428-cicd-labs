@@ -38,12 +38,13 @@ pipeline {
             steps {
                 sshagent (credentials: ['deploy-dev']) { 
                 sh "zip -r deployment.zip ."
-                    sh "scp deployment.zip ubuntu@${ip}:/var/www"
-                    sh "ssh ubuntu@${ip} &&\
+                sh "scp deployment.zip ubuntu@${ip}:/var/www"
+                sh "ssh ubuntu@${ip} &&\
                         rm -r /var/www/html &&\
                         mkdir -p /var/www/html &&\
                         unzip deployment.zip -d /var/www/html/ &&\
                         bash /var/www/html/jenkins/scripts/deliver.sh"
+                sh "sleep 60"
                 }
             }
         }
